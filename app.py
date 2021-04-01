@@ -10,7 +10,7 @@ if uploaded_file is not None:
   st.image(img,caption="Uploaded Image")
 
   if st.button("PREDICT"):
-    img = img.save("/test_code/test_images/new.jpg")
+    #img = img.save("/test_code/test_images/new.jpg")
     
     import os
     import cv2
@@ -52,9 +52,9 @@ if uploaded_file is not None:
         name_list = os.listdir(load_folder)
         for name in tqdm(name_list):
             try:
-                load_path = os.path.join(load_folder, name)
-                save_path = os.path.join(save_folder, name)
-                image = cv2.imread(load_path)
+                '''load_path = os.path.join(load_folder, name)
+                save_path = os.path.join(save_folder, name)'''
+                image = cv2.imread(img)
                 image = resize_crop(image)
                 batch_image = image.astype(np.float32)/127.5 - 1
                 batch_image = np.expand_dims(batch_image, axis=0)
@@ -67,11 +67,11 @@ if uploaded_file is not None:
 
     if __name__ == '__main__':
         model_path = 'test_code/saved_models'
-        load_folder = 'test_code/test_images'
+        #load_folder = 'test_code/test_images'
         save_folder = 'test_code/cartoonized_images'
         if not os.path.exists(save_folder):
             os.mkdir(save_folder)
-        cartoonize(load_folder, save_folder, model_path)
+        cartoonize(img, model_path)
     
     res = Image.open("/test_code/cartoonized_images/new.jpg")
     st.text("RESULT")
