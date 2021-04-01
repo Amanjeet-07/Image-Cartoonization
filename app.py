@@ -10,7 +10,7 @@ if uploaded_file is not None:
   st.image(img,caption="Uploaded Image")
 
   if st.button("PREDICT"):
-    img = img.save("/content/test_code/test_images/new.jpg")
+    img = img.save("/test_code/test_images/new.jpg")
     
     import os
     import cv2
@@ -73,6 +73,6 @@ if uploaded_file is not None:
             os.mkdir(save_folder)
         cartoonize(load_folder, save_folder, model_path)
     
-    res = Image.open("/content/test_code/cartoonized_images/new.jpg")
+    res = Image.open("/test_code/cartoonized_images/new.jpg")
     st.text("RESULT")
     st.image(img,caption="Cartoonized Image")
