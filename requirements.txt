@@ -2,6 +2,6 @@ tensorflow==1.15
 streamlit
 pyngrok
 Pillow
-cv2
+opencv-python
 numpy>=1.9.2
 tqdm
