@@ -1,6 +1,13 @@
 import streamlit as st
 from PIL import Image
-
+import os
+import cv2
+import numpy as np
+import tensorflow as tf 
+from test_code import network
+from test_code import guided_filter
+from tqdm import tqdm
+    
 st.title('IMAGE CARTOONIZER')
 st.text("UPLOAD AN IMAGE")
 
@@ -11,15 +18,6 @@ if uploaded_file is not None:
 
   if st.button("PREDICT"):
     #img = img.save("/test_code/test_images/new.jpg")
-    
-    import os
-    import cv2
-    import numpy as np
-    import tensorflow as tf 
-    import network
-    import guided_filter
-    from tqdm import tqdm
-
     def resize_crop(image):
         h, w, c = np.shape(image)
         if min(h, w) > 720:
