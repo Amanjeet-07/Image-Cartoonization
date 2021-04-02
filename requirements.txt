@@ -4,4 +4,5 @@ streamlit
 pyngrok
 Pillow
 tqdm
+io
 tensorflow-cpu==1.15
