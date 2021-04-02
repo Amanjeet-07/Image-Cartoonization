@@ -32,7 +32,7 @@ if uploaded_file is not None:
         return image
 
 
-    def cartoonize(load_folder, save_folder, model_path):
+    def cartoonize(img, save_folder, model_path):
         input_photo = tf.placeholder(tf.float32, [1, None, None, 3])
         network_out = network.unet_generator(input_photo)
         final_out = guided_filter.guided_filter(input_photo, network_out, r=1, eps=5e-3)
@@ -50,8 +50,8 @@ if uploaded_file is not None:
         name_list = os.listdir(load_folder)
         for name in tqdm(name_list):
             try:
-                '''load_path = os.path.join(load_folder, name)
-                save_path = os.path.join(save_folder, name)'''
+                '''load_path = os.path.join(load_folder, name)'''
+                save_path = os.path.join(save_folder, name)
                 image = cv2.imread(img)
                 image = resize_crop(image)
                 batch_image = image.astype(np.float32)/127.5 - 1
@@ -69,7 +69,7 @@ if uploaded_file is not None:
         save_folder = 'test_code/cartoonized_images'
         if not os.path.exists(save_folder):
             os.mkdir(save_folder)
-        cartoonize(img, model_path)
+        cartoonize(img,save_folder, model_path)
     
     res = Image.open("/test_code/cartoonized_images/new.jpg")
     st.text("RESULT")
