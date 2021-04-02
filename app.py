@@ -73,6 +73,7 @@ if uploaded_file is not None:
         if not os.path.exists(save_folder):
             os.mkdir(save_folder)
         res=cartoonize(img,save_folder, model_path)
+        res=io.BytesIO(res.content)
         st.text("RESULT")
         st.image(res,caption="Cartoonized Image")
 
