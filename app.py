@@ -47,10 +47,8 @@ if uploaded_file is not None:
 
         sess.run(tf.global_variables_initializer())
         saver.restore(sess, tf.train.latest_checkpoint(model_path))
-        '''name_list = os.listdir(load_folder)
-        for name in tqdm(name_list):'''
+   
         try:
-            '''load_path = os.path.join(load_folder, name)'''
             save_path = os.path.join(save_folder, "new.jpg")
             image = cv2.imread(img)
             image = resize_crop(image)
@@ -61,7 +59,7 @@ if uploaded_file is not None:
             output = np.clip(output, 0, 255).astype(np.uint8)
             cv2.imwrite(save_path, output)
         except:
-            print('cartoonize {} failed'.format(load_path))
+            print('cartoonize {} failed')
 
     if __name__ == '__main__':
         model_path = 'test_code/saved_models'
