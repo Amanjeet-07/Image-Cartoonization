@@ -62,7 +62,7 @@ if uploaded_file is not None:
             output = (np.squeeze(output)+1)*127.5
             output = np.clip(output, 0, 255).astype(np.uint8)
             cv2.imwrite(save_path, output)
-            final(output)
+            return output
         except:
             print('cartoonize {} failed')
 
@@ -72,6 +72,7 @@ if uploaded_file is not None:
         save_folder = 'test_code/cartoonized_images'
         if not os.path.exists(save_folder):
             os.mkdir(save_folder)
-        cartoonize(img,save_folder, model_path)
-    
+        res=cartoonize(img,save_folder, model_path)
+        st.text("RESULT")
+        st.image(res,caption="Cartoonized Image")
 
