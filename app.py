@@ -18,6 +18,10 @@ if uploaded_file is not None:
 
   if st.button("PREDICT"):
     #img = img.save("/test_code/test_images/new.jpg")
+    def final(res):
+        st.text("RESULT")
+        st.image(res,caption="Cartoonized Image")
+    
     def resize_crop(image):
         h, w, c = np.shape(image)
         if min(h, w) > 720:
@@ -58,6 +62,7 @@ if uploaded_file is not None:
             output = (np.squeeze(output)+1)*127.5
             output = np.clip(output, 0, 255).astype(np.uint8)
             cv2.imwrite(save_path, output)
+            final(output)
         except:
             print('cartoonize {} failed')
 
@@ -69,6 +74,4 @@ if uploaded_file is not None:
             os.mkdir(save_folder)
         cartoonize(img,save_folder, model_path)
     
-    res = Image.open("/test_code/cartoonized_images/new.jpg")
-    st.text("RESULT")
-    st.image(img,caption="Cartoonized Image")
+
